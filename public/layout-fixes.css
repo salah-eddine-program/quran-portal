@@ -1,0 +1,111 @@
+/* Quran Portal layout polish: spacious, readable and responsive */
+:root {
+  --portal-max: 1180px;
+  --portal-gutter: clamp(16px, 3vw, 32px);
+  --portal-emerald: #003627;
+  --portal-emerald-2: #134e3c;
+  --portal-gold: #c5a059;
+  --portal-border: #e3e9e6;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; background: #f9f9ff; }
+
+/* Keep the fixed header from covering the first content block. */
+header { height: auto; }
+main { padding-top: clamp(164px, 16vw, 190px) !important; padding-bottom: 150px !important; }
+main > .flex { width: 100%; gap: 0; }
+
+/* Shared content rail */
+main > .flex > .max-w-7xl,
+main > .flex > div[class*="max-w-7xl"] { width: min(100%, var(--portal-max)); margin-inline: auto; padding-inline: var(--portal-gutter); }
+main > .flex > div.w-full.bg-surface-container-low { width: 100%; }
+main > .flex > div.w-full.bg-surface-container-low > div { width: min(100%, var(--portal-max)); margin-inline: auto; padding-inline: var(--portal-gutter); }
+
+/* Reader command bar */
+main > .flex > div.w-full.bg-surface-container-low > div > div { align-items: stretch; }
+main > .flex > div.w-full.bg-surface-container-low [class*="flex-wrap"] { row-gap: 12px; }
+main > .flex > div.w-full.bg-surface-container-low select { max-width: 100%; }
+
+/* Intro card and main two-pane workspace */
+main #mushafPane, main #tafsirPane { min-width: 0; }
+main #mushafPane { box-shadow: 0 10px 30px rgba(19, 78, 60, .08); }
+main #tafsirPane { gap: 16px; }
+main #tafsirPane > * { min-width: 0; }
+#quranTextWrapper { overflow-wrap: anywhere; text-align: right; }
+#quranTextWrapper .ayah-block { line-height: 2.15; }
+#quranTextWrapper .ayah-text { font-size: clamp(21px, 2.1vw, 28px); }
+
+/* Do not let long labels push cards outside the viewport. */
+main button, main select, main a { max-width: 100%; }
+main select { min-width: 0; }
+
+/* Live hub */
+#liveHub { width: min(100%, var(--portal-max)); max-width: none; margin: 0 auto 24px; padding-inline: var(--portal-gutter); }
+.live-hub-card { border-radius: 20px; }
+.live-hub-head { padding: 18px 22px; }
+.live-tabs { scrollbar-width: thin; }
+.live-panel { padding: 22px; }
+.live-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.live-item { min-width: 0; min-height: 116px; padding: 14px; }
+.live-item h4, .live-item p { overflow-wrap: anywhere; }
+.live-item-actions { flex-wrap: wrap; }
+.live-action { white-space: nowrap; }
+
+/* Bottom player: compact but never covers page content. */
+body > aside.fixed { min-height: 82px; }
+body > aside.fixed > div { padding-inline: var(--portal-gutter); }
+body > aside.fixed .min-w-\[280px\] { min-width: min(280px, 100%); }
+footer { padding-bottom: 120px !important; }
+
+/* Toast should remain visible above the player. */
+.portal-toast { top: 118px !important; z-index: 1000 !important; }
+
+@media (max-width: 1100px) {
+  main > .flex > .max-w-7xl,
+  main > .flex > div[class*="max-w-7xl"],
+  main > .flex > div.w-full.bg-surface-container-low > div { padding-inline: 20px; }
+  .live-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  main #mushafPane, main #tafsirPane { grid-column: 1 / -1; }
+  #tafsirPane { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+
+@media (max-width: 720px) {
+  header .max-w-7xl, header [class*="max-w-7xl"] { padding-inline: 16px !important; }
+  header .h-20 { height: auto; min-height: 76px; padding-block: 12px; }
+  header .h-20 > div:first-child { min-width: 0; }
+  header .h-20 > div:first-child > div { min-width: 0; }
+  header .h-20 > div:first-child span { overflow-wrap: anywhere; }
+  header .h-20 .flex.items-center.gap-space-sm { gap: 2px; }
+  header .h-20 button { padding: 6px; }
+  main { padding-top: 188px !important; }
+  main > .flex > .max-w-7xl,
+  main > .flex > div[class*="max-w-7xl"],
+  main > .flex > div.w-full.bg-surface-container-low > div { padding-inline: 14px; }
+  main > .flex > div.w-full.bg-surface-container-low > div > div { flex-direction: column; }
+  main > .flex > div.w-full.bg-surface-container-low [class*="justify-between"] { align-items: stretch; }
+  #tafsirPane { display: flex; }
+  .live-hub-head { padding: 16px; }
+  .live-panel { padding: 16px; }
+  .live-grid { grid-template-columns: 1fr; }
+  .live-calendar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #quranTextWrapper { padding-inline: 16px !important; }
+  #quranTextWrapper .ayah-text { font-size: 21px; }
+  #quranTextWrapper .ayah-block { display: block !important; margin-bottom: 14px; }
+  main #mushafPane > div:last-child { flex-direction: column; gap: 8px; align-items: stretch; }
+  body > aside.fixed { position: fixed; }
+  body > aside.fixed > div { padding: 10px 14px; }
+  body > aside.fixed .flex-1 { width: 100%; }
+  body > aside.fixed .min-w-\[280px\] { min-width: 0; width: 100%; }
+  body > aside.fixed .min-w-\[280px\] + .flex-1 { display: none; }
+  footer { padding-bottom: 145px !important; }
+}
+
+@media (max-width: 420px) {
+  header .h-20 > div:first-child img { display: none; }
+  header .h-20 > div:first-child span.font-headline-sm { font-size: 16px; }
+  header .h-20 > div:first-child span.font-label-sm { font-size: 10px; }
+  .live-calendar { grid-template-columns: 1fr; }
+  .live-hub-title h2 { font-size: 16px; }
+}

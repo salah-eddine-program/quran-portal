@@ -69,7 +69,7 @@
   if (playButton) {
     const audio = new Audio('https://server8.mp3quran.net/afs/018.mp3');
     audio.preload = 'none';
-    let playing = true;
+    let playing = false;
     const icon = playButton.querySelector('.material-symbols-outlined');
     const setPlaybackState = (isPlaying) => {
       playing = isPlaying;
